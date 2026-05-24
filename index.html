@@ -105,6 +105,7 @@
         .line-clamp-3 + .llegir-mes-btn,
         .desc-truncated + .llegir-mes-btn { display: inline-flex; }
     </style>
+    <!-- Enllaç per convertir la web en Aplicació Mòbil (PWA) -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#375c91">
 </head>
@@ -118,6 +119,7 @@
   </div>
 </div>
 
+<!-- LINKS PER A ORDINADOR -->
 <div class="hidden md:flex gap-8 items-center">
 <button onclick="document.getElementById('manifestModal').classList.remove('hidden')" class="text-on-surface-variant hover:text-primary font-semibold transition-colors duration-300 bg-transparent border-none cursor-pointer">Manifest i Valors</button>
 <button onclick="document.getElementById('normesModal').classList.remove('hidden')" class="text-on-surface-variant hover:text-primary font-semibold transition-colors duration-300 bg-transparent border-none cursor-pointer">Normes d'ús</button>
@@ -126,6 +128,7 @@
 <a href="https://wa.me/34606149649" target="_blank" class="text-on-surface-variant hover:text-primary font-semibold transition-colors duration-300 flex items-center gap-1.5">👤 Administradora</a>
 </div>
 
+<!-- BOTÓ D'HAMBURGUESA PER A MÒBILS -->
 <div class="flex md:hidden">
   <button onclick="toggleMobileMenu()" class="text-on-surface-variant hover:text-primary p-2 rounded-xl transition-colors">
     <span id="menuMobilIcon" class="material-symbols-outlined text-3xl">menu</span>
@@ -133,12 +136,13 @@
 </div>
 </div>
 
+<!-- MENÚ DESPLEGABLE MÒBIL -->
 <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-surface-container/50 px-8 py-4 flex flex-col gap-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-200">
   <button onclick="document.getElementById('manifestModal').classList.remove('hidden'); toggleMobileMenu();" class="text-left text-on-surface-variant hover:text-primary font-semibold py-2 border-b border-gray-100 bg-transparent cursor-pointer">Manifest i Valors</button>
   <button onclick="document.getElementById('normesModal').classList.remove('hidden'); toggleMobileMenu();" class="text-left text-on-surface-variant hover:text-primary font-semibold py-2 border-b border-gray-100 bg-transparent cursor-pointer">Normes d'ús</button>
   <button onclick="document.getElementById('guiaModal').classList.remove('hidden'); toggleMobileMenu();" class="text-left text-on-surface-variant hover:text-primary font-semibold py-2 border-b border-gray-100 bg-transparent cursor-pointer">Guia d'ús</button>
   <a class="text-on-surface-variant hover:text-primary font-semibold py-2 border-b border-gray-100 flex items-center gap-1.5" href="https://chat.whatsapp.com/GekxmhnIVbIJYywhRTPf0N" target="_blank" onclick="toggleMobileMenu()">💬 Comunitat de la Xarxa de Favors</a>
-  <a href="https://wa.me/34606149649" target="_blank" onclick="toggleMobileMenu()" class="text-on-surface-variant hover:text-primary font-semibold py-2 flex items-center gap-1.5">A👤 dministradora</a>
+  <a href="https://wa.me/34606149649" target="_blank" onclick="toggleMobileMenu()" class="text-on-surface-variant hover:text-primary font-semibold py-2 flex items-center gap-1.5">👤 Administradora</a>
 </div>
 </nav>
 
@@ -448,7 +452,7 @@ function toggleMobileMenu() {
     document.getElementById('missatges-count').textContent = visibles.length;
 
     if (visibles.length === 0) {
-      grid.innerHTML = `<p class="col-span-3 text-center text-on-surface-variant font-semibold py-16">No hi ha missatges en aquesta pestanya ara mateix.</p>`;
+      grid.innerHTML = `<p class="col-span-3 text-center text-on-surface-variant font-semibold py-16">No hi ha missatges en aquesta pestanya ara matrix.</p>`;
       return;
     }
 
@@ -460,9 +464,9 @@ function toggleMobileMenu() {
       const localitat = f.Locality === "Altres localitats" ? (f.OtherLocality || "Altres") : (f.Locality || "");
       const initials  = getInitials(f.Name);
       
-      const codiEscapat = String(f.SecretCode || "").replace(/'/g, "\\'");
-      const titolEscapat = String(f.Title || "(Sense títol)").replace(/'/g, "\\'");
-      const tipusEscapat = String(f.Type || "").replace(/'/g, "\\'");
+      const codiEscapat = String(f.SecretCode || "").replace(/'/g, "\'");
+      const titolEscapat = String(f.Title || "(Sense títol)").replace(/'/g, "\'");
+      const tipusEscapat = String(f.Type || "").replace(/'/g, "\'");
 
       const cardId = `desc-${record.id}`;
       const card = document.createElement('div');
@@ -619,7 +623,9 @@ function toggleMobileMenu() {
       document.getElementById('whatsapp').classList.remove('ring-2', 'ring-green-400', 'ring-red-400');
       document.getElementById('publishModal').classList.add('hidden');
 
-      const msgAdmin = "⏳ Nova entrada pendent de revisió a la Xarxa de Favors!\n\n📌 *" + titol + "* (" + tipus + ")";
+      const msgAdmin = "⏳ Nova entrada pendent de revisió a la Xarxa de Favors!
+
+📌 *" + titol + "* (" + tipus + ")";
       mostrarToastAdmin("https://wa.me/34606149649?text=" + encodeURIComponent(msgAdmin));
       fetchFavors();
     } catch (error) {
@@ -678,7 +684,12 @@ function toggleMobileMenu() {
         return;
       }
       
-      const msgAdmin = `📢 *Nou missatge a la Xarxa de Favors!*\n\n📌 *${titol}* (${tipus})\n\n🔗 Entra al taulell web per veure tots els detalls:\n🌐 ${urlWeb}`;
+      const msgAdmin = `📢 *Nou missatge a la Xarxa de Favors!*
+
+📌 *${titol}* (${tipus})
+
+🔗 Entra al taulell web per veure tots els detalls:
+🌐 ${urlWeb}`;
       mostrarToastAdmin("https://api.whatsapp.com/send?text=" + encodeURIComponent(msgAdmin), "Aprovat! Toca per compartir a un grup.");
       
       fetchFavors();
@@ -754,6 +765,7 @@ function toggleMobileMenu() {
 <footer class="mt-16 pb-10 text-center">
 </footer>
 
+<!-- FINESTRA EMERGENT (MODAL): MANIFEST I VALORS AMAGAT COM ABANS -->
 <div id="manifestModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center modal-overlay px-4">
   <div class="bg-white rounded-[2rem] shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden">
     <div class="flex items-center justify-between px-8 py-6 border-b border-outline-variant">
@@ -763,22 +775,32 @@ function toggleMobileMenu() {
       </button>
     </div>
     <div class="overflow-y-auto px-8 py-6 text-sm text-on-surface-variant leading-relaxed space-y-6 custom-scroll">
-      <p class="italic text-base text-primary font-medium">"Creiem en un barri on el veïnat es cuida, col·labora i comparteix el seu temps de manera completament altruista."</p>
-      <div>
+      <p class="italic text-base text-primary font-medium">"Creiem en el poder de la gent normal fent coses extraordinàries."</p>
+      <div class="space-y-3 text-on-surface-variant text-sm">
+        <p>En un món que sovint va massa de pressa i on sembla que tot té un preu, nosaltres triem parar, mirar al nostre voltant i estendre la mà. Perquè cap de nosaltres ho sap fer tot, però tots tenim alguna cosa valuosa per oferir.</p>
+        <p><strong>La Xarxa de Favors no és un intercanvi comercial; és un pacte de confiança.</strong> No comptem monedes, comptem moments. Avui tu necessites algú que passegi el gos o que t'ajudi a entendre la factura de la llum; demà, seràs tu qui ensenyi a cuinar aquell plat tradicional o qui acompanyi un veí al metge. Cada favor és un fil invisible que ens uneix i ens fa més forts com a comunitat.</p>
+        <p><strong>Aquí, tothom suma.</strong> No importa l'edat, ni d'on vinguis. La teva disponibilitat, el teu somriure i el teu temps són la riquesa més gran d'aquesta xarxa. Cooperem per transformar els nostres barris en espais més humans, on ningú se senti sol i on l'ajuda mai sigui un luxe, sinó un gest natural.</p>
+        <p class="font-bold text-primary text-center pt-2">Perquè connectar és començar a canviar-ho tot. Suma't a la xarxa. Demana sense por. Ofereix amb el cor.</p>
+      </div>
+      
+      <div class="border-t border-outline-variant/30 pt-4">
         <h3 class="font-black text-on-surface text-base mb-1.5 flex items-center gap-2">🎯 Missió</h3>
-        <p>Connectar les persones de la nostra comunitat per fomentar el suport mutu i l'ajuda de proximitat. Volem facilitar solucions col·laboratives als reptes del dia a dia, reaprofitar recursos i fer del nostre entorn un lloc més humà i acollidor.</p>
+        <p class="text-on-surface-variant text-sm">Connectem les persones de Terrassa a través de la web i WhatsApp per facilitar l'ajuda i la realització de favors de forma totalment desinteressada. Som una xarxa oberta a tothom que transforma les necessitats quotidianes en oportunitats per crear vincles, combatre l'aïllament i enfortir el teixit humà de la ciutat.</p>
       </div>
-      <div>
-        <h3 class="font-black text-on-surface text-base mb-1.5 flex items-center gap-2">👁️ Visió</h3>
-        <p>Esdevenir una xarxa veïnal forta, cohesionada i autosuficient. Un espai de referència on cap persona es trobi sola davant d'una necessitat puntual i on l'intercanvi de coneixements i l'ajuda altruista siguin el motor del barri.</p>
+
+      <div class="border-t border-outline-variant/30 pt-4">
+        <h3 class="font-black text-on-surface text-base mb-1.5 flex items-center gap-2">🚀 Visió</h3>
+        <p class="text-on-surface-variant text-sm">Volem potenciar la cooperació veïnal per millorar la vida de les persones. Treballem per esdevenir una xarxa de suport mutu de referència a Catalunya, aconseguint que ciutats i comarques tinguin la seva pròpia xarxa de favors en funcionament.</p>
       </div>
-      <div class="bg-surface-variant rounded-2xl p-5">
-        <h3 class="font-black text-on-surface text-base mb-3 flex items-center gap-2">💎 Els nostres Valors</h3>
-        <ul class="space-y-2 list-disc list-inside font-medium">
-          <li><strong>Altruisme total:</strong> Excloguem completament els diners o l'intercanvi comercial. Ens movem per solidaritat.</li>
-          <li><strong>Proximitat i Confiança:</strong> Teixim relacions des de la seguretat i el respecte del nostre entorn més proper.</li>
-          <li><strong>Cooperació:</strong> Compartim temps, habilitats i recursos perquè entenem que sumant som mais forts.</li>
-          <li><strong>Inclusió:</strong> Una xarxa oberta a tothom, sans distincions, on cada veí té alguna cosa de valuosa a oferir.</li>
+
+      <div class="bg-surface-variant rounded-2xl p-5 border border-surface-container">
+        <h3 class="font-black text-on-surface text-base mb-3 flex items-center gap-2">🌱 Valors</h3>
+        <ul class="space-y-3 list-none font-medium text-xs">
+          <li class="flex items-start gap-2">🔹 <span><strong>Ajuda desinteressada:</strong> Creiem en el poder de col·laborar. Avui soluciones tu una necessitat i demà algú et donarà un cop de mà a tu.</span></li>
+          <li class="flex items-start gap-2">🔹 <span><strong>Confiança:</strong> Som un espai segur on les persones es connecten des de l'honestedat, el respecte i la seguretat de saber-se en bones mans.</span></li>
+          <li class="flex items-start gap-2">🔹 <span><strong>Inclusió:</strong> No importa l'edat, l'origen ni la situació; la xarxa és de tots i per a tots. Tothom té alguna cosa a oferir i alguna cosa a rebre.</span></li>
+          <li class="flex items-start gap-2">🔹 <span><strong>Acompanyament:</strong> No només fem favors pràctics; generem presència i caliu humà. Ningú s'hauria de sentir sol en la seva comunitat.</span></li>
+          <li class="flex items-start gap-2">🔹 <span><strong>Sostenibilitat:</strong> Apostem per aprofitar els recursos, el temps i els talents que ja existeixen, promovent un estil de vida més col·laboratiu i menys consumista.</span></li>
         </ul>
       </div>
     </div>
